@@ -8,7 +8,7 @@ const Blogs = new Model("blogs", "blog_id");
 
 route.get("/", async (req, res, next) => {
   try {
-    const dbResponse = await Blogs.find(req.query, "category, title, cover, read_time_value, read_time_unit, author_id, content");
+    const dbResponse = await Blogs.find(req.query, "blog_id,category, title, cover, read_time_value, read_time_unit, author_id, content");
     res.send(dbResponse);
   } catch (error) {
     res.status(500).send({ error: error.message });
