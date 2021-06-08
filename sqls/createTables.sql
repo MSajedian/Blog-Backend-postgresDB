@@ -20,7 +20,7 @@ CREATE TABLE
             cover VARCHAR ( 500 ) NOT NULL,
             read_time_value INTEGER NOT NULL,
             read_time_unit VARCHAR ( 50 ) NOT NULL,
-            author_id INTEGER REFERENCES authors,
+            author_id INTEGER REFERENCES authors ON DELETE CASCADE,
             content VARCHAR ( 10000 ) NOT NULL,
             created_at TIMESTAMPTZ NOT NULL DEFAULT NOW() 
 );

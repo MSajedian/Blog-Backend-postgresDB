@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import Model from "../../utils/model/index.js";
+import query from "../../utils/db/index.js";
 
 const route = Router();
 
@@ -50,4 +51,29 @@ route.delete("/:id", async (req, res, next) => {
     res.status(500).send({ error });
   }
 });
+
+// ****************************** Relations ******************************
+
+route.get("/:id/author", async (req, res, next) => {
+  try {
+    console.log('req.params.id:', req.params.id)
+    const dbResponse = await query(` 
+    SELECT 
+	  blogs.blog_id,
+	  blogs.category,
+  	blogs.title,
+  	blogs.cover,
+  	authors.author_id,
+  	authors.name,
+	  authors.surname
+		FROM blogs 
+		INNER JOIN authors ON blogs.author_id=authors.author_id 
+    WHERE blogs.blog_id=${req.params.id}
+  `);
+    res.send(dbResponse);
+  } catch (error) {
+    res.status(error.code || 500).send({ error: error.message });
+  }
+});
+
 export default route;
