@@ -26,9 +26,8 @@ class Model {
     }
   }
   async find(filter, projection) {
-    let queryText = `SELECT ${projection ? projection : "*"} FROM ${
-      this.name
-    } `;
+    let queryText = `SELECT ${projection ? projection : "*"} FROM ${this.name
+      } `;
     // {name:'Gregorio'} => [[name,'Gregorio']]
     if (Object.values(filter).length > 0) {
       const entries = Object.entries(filter);
@@ -46,7 +45,7 @@ class Model {
       let queryText = `INSERT INTO ${this.name} (${Object.keys(
         modelValues
       ).join(",")}) VALUES(${Object.values(modelValues)
-        .map((v) => v)
+        .map((v) => { return "'" + v + "'" })
         .join(",")}) RETURNING * ;`;
       const rows = await query(queryText);
       return rows;

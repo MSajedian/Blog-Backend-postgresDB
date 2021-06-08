@@ -3,5 +3,5 @@
 -- SELECT * FROM authors;
 
 -- ************* INSERT new Blog Post *************
--- INSERT INTO blogs( category, title, cover, read_time_value, read_time_unit, author_id, content ) VALUES ( 'ARTICLE CATEGORY1', 'ARTICLE TITLE1', 'ARTICLE COVER (IMAGE LINK)1', 1, 'minute', '1', 'HTML' );
-SELECT * FROM blogs;
+INSERT INTO blogs( category, title, cover, read_time_value, read_time_unit, author_id, content ) VALUES ( 'ARTICLE CATEGORY2', 'ARTICLE TITLE2', 'ARTICLE COVER (IMAGE LINK)2', 2, 'minute', '2', 'HTML' );
+-- SELECT * FROM blogs;
